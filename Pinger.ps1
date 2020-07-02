@@ -33,12 +33,16 @@ $StartTime=Get-Date
 Do {
     Get-Date
     $Exit = $False
+    $Results=@()
     foreach ($AddrIP in $AddrIPs) {
         
         $Pingo = Get-WmiObject Win32_PingStatus -f "Address='$AddrIP'" 
-        $Pingo | Format-Table Address, ResponseTime, StatusCode -auto
+        $Results+=@([pscustomobject]@{Address=$Pingo.Address;ResponseTime=$Pingo.ResponseTime;StatusCode=$Pingo.StatusCode;TimeStamp=Get-Date})
 
     }
+    $Results|Format-Table
+    Write-Host "Waiting for $Delay seconds..."
+    Write-Host "Next Ping cycle will start at "(Get-Date).AddSeconds($Delay)
     Start-Sleep -seconds $Delay
     if ($Seconds -ne 0){
         $timeNow = Get-Date
