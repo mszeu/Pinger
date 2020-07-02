@@ -15,8 +15,9 @@
      Pinger 10.0.0.1,10.0.0.2,10.0.0.10 -Delay 30 -Seconds 300
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu
-      Version: 0.1
-      License: AGPL 3.0 - Plese abide to the Aferro AGPL 3.0 license rules! It's free bug give credit to the authors :-) 
+      Version: 1.1
+      License: AGPL 3.0 - Plese abide to the Aferro AGPL 3.0 license rules! It's free bug give credit to the authors :-)
+      
 #>
 param (
         [Parameter(Mandatory)]
@@ -35,7 +36,8 @@ Do {
     foreach ($AddrIP in $AddrIPs) {
         
         $Pingo = Get-WmiObject Win32_PingStatus -f "Address='$AddrIP'" 
-        $Pingo | Format-Table Address, StatusCode -auto
+        $Pingo | Format-Table Address, ResponseTime, StatusCode -auto
+
     }
     Start-Sleep -seconds $Delay
     if ($Seconds -ne 0){
