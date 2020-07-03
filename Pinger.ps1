@@ -15,7 +15,7 @@
      Pinger 10.0.0.1,10.0.0.2,10.0.0.10 -Delay 30 -Seconds 300
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu
-      Version: 1.1
+      Version: 1.2
       License: AGPL 3.0 - Plese abide to the Aferro AGPL 3.0 license rules! It's free bug give credit to the authors :-)
       
 #>
