@@ -72,7 +72,11 @@ Do {
             })
 
     }
-    $Results | Format-Table
+    $Results | Format-Table Address,
+                            @{L = "Response Time"; E = { $_.ResponseTime } },
+                            @{L = "Status Code"; E = { $_.StatusCode } },
+                            Message,
+                            @{L = "Timestamp"; E = { $_.TimeStamp } } -AutoSize 
     Write-Host "Waiting for $Delay seconds..."
     Write-Host "Next Ping cycle will start at "(Get-Date).AddSeconds($Delay)
     Start-Sleep -seconds $Delay
