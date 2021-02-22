@@ -1,5 +1,5 @@
 # Pinger
-**Pinger** is a simple PowerShell scritp that pings the specified list of IP addresses for the specified time.
+**Pinger** is a simple PowerShell script that pings the specified list of hosts, at regular intrervals, for the specified time.
 
 If the time specified through the parameter **Seconds** is zero that the script never terminates and CTRL-C is needed to terminate it.
 
