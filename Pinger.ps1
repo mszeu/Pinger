@@ -3,20 +3,21 @@
      Pings a comma separated list of addresses for a certain time with a specified interval.
     .DESCRIPTION
      Pings a comma separated list of addresses for a specified time with a specified interval frequency.
-     The times are specified through the parameters -Delay and -Seconds are expressed in seconds.
+     The times are specified through the parameters -Delay and -Seconds. They are expressed in seconds.
      If the parameter -Seconds is omitted or set to zero the script runs continuously.
      .PARAMETER IpList
      A comma separated list of hosts or IPs
      .PARAMETER Delay
-     The interfal between Pings. It is expressed in seconds and if is not specified it defalts to 160 seconds
+     The interval between Pings. It is expressed in seconds and, if is not specified, it defaults to 160 seconds.
     .PARAMETER Seconds
-     It detemines for how long the program runs. It is expressed in seconds and it is not specified, or set to zero, the program never terminates
+     It determines for how long the program runs. It is expressed in seconds and if it is not specified, or set to zero, the program never terminates.
     .EXAMPLE
      Pinger 10.0.0.1,10.0.0.2,10.0.0.10 -Delay 30 -Seconds 300
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
-      Version: 1.2
-      License: AGPL 3.0 - Please abide to the Aferro AGPL 3.0 license rules! It's free but give credits to the author :-)
+      Version: 1.2.1
+      License: AGPL 3.0 - Please abide to the Affero AGPL 3.0 license rules! It's free but give credits to the author :-)
+      For donations: https://buymeacoffee.com/readitalians
       
 #>
 param (
