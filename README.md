@@ -1,4 +1,5 @@
 # Pinger
+
 **Pinger** is a simple PowerShell script that pings the specified list of hosts at regular intervals for a specified time.
 
 If the time specified through the parameter **Seconds** is zero that the script never terminates and CTRL-C is needed to terminate it.
@@ -10,6 +11,7 @@ If **Delay** is not specified, the default value is **160** seconds.
 The script is given **AS IS** and it is under the **AGPL Aferro license 3.0**.
 
 For more information about the license terms please refer tot the **LICENSE** file distributed with the project.
+
 ## Usage
 
 **\Pinger.ps1** **Ip1**,**Ip2**,...,**Ipn** [**-Delay** seconds] [**-Seconds** seconds]
