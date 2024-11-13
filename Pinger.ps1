@@ -19,8 +19,8 @@
       Version: 1.3
       License: AGPL 3.0 - Please abide to the Affero AGPL 3.0 license rules! It's free but give credits to the author :-)
       For donations: https://buymeacoffee.com/readitalians
-      testing 
-#>
+
+      #>
 param (
     [Parameter(Mandatory)]
     $AddrIPandDescs,
