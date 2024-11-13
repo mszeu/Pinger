@@ -7,23 +7,23 @@
      If the parameter -Seconds is omitted or set to zero the script runs continuously.
      .PARAMETER IpList
      A comma separated list of hosts or IPs
+     Optionally you can add a description using this format IP:Description. Example: 10.0.0.1:server1,10.0.0.3:serverTwo,.. etc.
      .PARAMETER Delay
      The interval between Pings. It is expressed in seconds and, if is not specified, it defaults to 160 seconds.
     .PARAMETER Seconds
      It determines for how long the program runs. It is expressed in seconds and if it is not specified, or set to zero, the program never terminates.
     .EXAMPLE
-     Pinger 10.0.0.1,10.0.0.2,10.0.0.10 -Delay 30 -Seconds 300
+     Pinger 10.0.0.1,10.0.0.2:ServerHTTP,10.0.0.10:MyPEDHSM -Delay 30 -Seconds 300
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
-      Version: 1.2.1
+      Version: 1.3
       License: AGPL 3.0 - Please abide to the Affero AGPL 3.0 license rules! It's free but give credits to the author :-)
       For donations: https://buymeacoffee.com/readitalians
-      Test
       
 #>
 param (
     [Parameter(Mandatory)]
-    $AddrIPs,
+    $AddrIPandDescs,
     [int]$Delay = 160,
     [int]$Seconds = 0
         
@@ -36,9 +36,10 @@ Do {
     Get-Date
     $Exit = $False
     $Results = @()
-    foreach ($AddrIP in $AddrIPs) {
-        
-        $Pingo = Get-WmiObject Win32_PingStatus -f "Address='$AddrIP'"
+    foreach ($AddrIPandDesc in $AddrIPandDescs) {
+        $AddDescArray=$AddrIPandDesc.split(':')
+        $Address = $AddDescArray[0]
+        $Pingo = Get-WmiObject Win32_PingStatus -f "Address='$Address'"
         
         switch ($Pingo.StatusCode) {
             0 { $ResultMessage = "Success"; break }						
@@ -66,7 +67,8 @@ Do {
         }
 
         $Results += @([pscustomobject]@{
-                Address      = $Pingo.Address; 
+                Address      = $Pingo.Address;
+                Description = if($AddDescArray.Length -gt 1){$AddDescArray[1]} else {""};
                 ResponseTime = $Pingo.ResponseTime;
                 StatusCode   = $Pingo.StatusCode;
                 Message      = $ResultMessage; 
@@ -74,7 +76,7 @@ Do {
             })
 
     }
-    $Results | Format-Table Address,
+    $Results | Format-Table Address, Description,
                             @{L = "Response Time"; E = { $_.ResponseTime } },
                             @{L = "Status Code"; E = { $_.StatusCode } },
                             Message,
@@ -91,4 +93,3 @@ Do {
     }    
 }
 until ($Exit)
-    
