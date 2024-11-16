@@ -5,7 +5,7 @@
      Pings a comma separated list of addresses for a specified time with a specified interval frequency.
      The times are specified through the parameters -Delay and -Seconds. They are expressed in seconds.
      If the parameter -Seconds is omitted or set to zero the script runs continuously.
-     .PARAMETER IpList
+    .PARAMETER AddrIPandDescs
      A comma separated list of hosts or IPs
      Optionally you can add a description using this format IP:Description. Example: 10.0.0.1:server1,10.0.0.3:serverTwo,.. etc.
      .PARAMETER Delay
@@ -16,7 +16,7 @@
      Pinger 10.0.0.1,10.0.0.2:ServerHTTP,10.0.0.10:MyPEDHSM -Delay 30 -Seconds 300
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
-      Version: 1.3
+      Version: 1.3.1
       License: AGPL 3.0 - Please abide to the Affero AGPL 3.0 license rules! It's free but give credits to the author :-)
       For donations: https://buymeacoffee.com/readitalians
 
